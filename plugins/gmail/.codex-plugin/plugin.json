@@ -1,14 +1,13 @@
 {
   "name": "gmail",
-  "version": "0.1.9",
-  "description": "Work with Gmail using the configured Gmail app connector.",
+  "version": "0.2.0",
+  "description": "Read Gmail and prepare drafts through a local community MCP server, with separate Google authorization for each mailbox.",
   "author": {
-    "name": "OpenAI",
-    "email": "support@openai.com",
-    "url": "https://openai.com/"
+    "name": "georgebelt",
+    "url": "https://github.com/georgebelt/plugins"
   },
   "homepage": "https://workspace.google.com/products/gmail/",
-  "repository": "https://github.com/openai/openai/tree/master/chatgpt/oai-maintained-plugins",
+  "repository": "https://github.com/georgebelt/plugins",
   "license": "MIT",
   "keywords": [
     "gmail",
@@ -20,15 +19,14 @@
     "threads",
     "drafts"
   ],
-  "apps": "./.app.json",
   "interface": {
-    "displayName": "Gmail",
-    "shortDescription": "Read and manage Gmail",
-    "longDescription": "Use Gmail to summarize inbox activity, draft replies, and organize email threads through the connected Gmail app.",
-    "developerName": "OpenAI",
+    "displayName": "Gmail (Local MCP)",
+    "shortDescription": "Read mail and prepare drafts",
+    "longDescription": "Community integration using workspace-mcp by Taylor Wilsdon. Runs on your computer with your own Google OAuth client. Supports multiple separately authorized Gmail accounts. Requires uv and Google OAuth setup; does not use the OpenAI Gmail connector.",
+    "developerName": "georgebelt · community integration",
     "category": "Communication",
     "capabilities": [
-      "Interactive",
+      "Read",
       "Write"
     ],
     "websiteURL": "https://workspace.google.com/products/gmail/",

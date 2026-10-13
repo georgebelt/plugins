@@ -1,20 +1,24 @@
 {
   "mcpServers": {
     "gmail": {
-      "type": "http",
-      "url": "https://gmailmcp.googleapis.com/mcp/v1",
-      "scopes": [
-        "https://mail.google.com/",
-        "https://www.googleapis.com/auth/gmail.modify",
-        "https://www.googleapis.com/auth/gmail.compose",
-        "https://www.googleapis.com/auth/gmail.readonly",
-        "https://www.googleapis.com/auth/gmail.metadata"
+      "command": "/bin/bash",
+      "args": [
+        "${PLUGIN_ROOT}/scripts/start.sh"
       ],
-      "oauth": {
-        "callback_port": 12798,
-        "client_id": "<GMAIL_PUBLIC_CLIENT_ID>",
-        "client_secret": "<GMAIL_CLIENT_SECRET>"
-      }
+      "startup_timeout_sec": 120,
+      "enabled_tools": [
+        "start_google_auth",
+        "search_gmail_messages",
+        "get_gmail_message_content",
+        "get_gmail_messages_content_batch",
+        "get_gmail_thread_content",
+        "get_gmail_threads_content_batch",
+        "get_gmail_attachment_content",
+        "draft_gmail_message",
+        "list_gmail_labels",
+        "modify_gmail_message_labels",
+        "batch_modify_gmail_message_labels"
+      ]
     }
   }
 }
