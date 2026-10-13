@@ -1,7 +1,7 @@
 {
-  "name": "openai-api-curated",
+  "name": "georgebelt-api-plugins",
   "interface": {
-    "displayName": "Codex official"
+    "displayName": "Georgebelt Plugins (API)"
   },
   "plugins": [
     {
