@@ -1,0 +1,29 @@
+{
+  "mcpServers": {
+    "outlook-email": {
+      "command": "/bin/bash",
+      "args": ["${PLUGIN_ROOT}/scripts/start.sh"],
+      "startup_timeout_sec": 120,
+      "enabled_tools": [
+        "login",
+        "verify-login",
+        "list-accounts",
+        "get-current-user",
+        "list-mail-messages",
+        "list-mail-folders",
+        "list-mail-child-folders",
+        "list-mail-folder-messages",
+        "get-mail-message",
+        "get-mail-message-mime",
+        "list-mail-attachments",
+        "get-mail-attachment-content",
+        "create-draft-email",
+        "create-reply-draft",
+        "create-reply-all-draft",
+        "create-forward-draft",
+        "update-mail-message",
+        "add-mail-attachment"
+      ]
+    }
+  }
+}

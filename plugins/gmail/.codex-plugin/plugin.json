@@ -1,6 +1,6 @@
 {
   "name": "gmail",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Read Gmail and prepare drafts through a local community MCP server, with separate Google authorization for each mailbox.",
   "author": {
     "name": "georgebelt",
@@ -19,6 +19,13 @@
     "threads",
     "drafts"
   ],
+  "mcpServers": "./.mcp.json",
+  "skills": "./skills/",
+  "extensions": {
+    "com.openai": {
+      "onboardingSkill": "./skills/gmail-setup/SKILL.md"
+    }
+  },
   "interface": {
     "displayName": "Gmail (Local MCP)",
     "shortDescription": "Read mail and prepare drafts",

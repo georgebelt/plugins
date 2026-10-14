@@ -2,6 +2,16 @@
 
 This repository contains a curated collection of Codex plugin examples.
 
+This fork is migrating plugins that depend on OpenAI-hosted connectors to
+independent connections to their providers. The first integration is
+[Gmail (Local MCP)](plugins/gmail/README.md): a local MCP server connects
+directly to Gmail API with the user's own Google OAuth application. It works
+with personal Gmail accounts and does not require Workspace Developer Preview.
+[Outlook Email (Local MCP)](plugins/outlook-email/README.md) follows the same
+approach for personal Microsoft accounts, using the user's own Microsoft Entra
+application and the Microsoft Graph API. Other plugins, including Outlook
+Calendar, retain their existing integrations until migrated.
+
 Each plugin lives under `plugins/<name>/` with a required
 `.codex-plugin/plugin.json` manifest and optional companion surfaces such as
 `skills/`, `.app.json`, `.mcp.json`, plugin-level `agents/`, `commands/`,

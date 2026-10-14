@@ -1,14 +1,13 @@
 {
   "name": "outlook-email",
-  "version": "0.1.7",
-  "description": "Work with Outlook Email using the configured Microsoft Outlook app connector.",
+  "version": "0.2.0",
+  "description": "Read personal Outlook mail and prepare drafts through a local MCP server, using your own Microsoft OAuth application.",
   "author": {
-    "name": "OpenAI",
-    "email": "support@openai.com",
-    "url": "https://openai.com/"
+    "name": "georgebelt",
+    "url": "https://github.com/georgebelt/plugins"
   },
   "homepage": "https://www.microsoft.com/en-us/microsoft-365/outlook/email-and-calendar-software-microsoft-outlook",
-  "repository": "https://github.com/openai/plugins",
+  "repository": "https://github.com/georgebelt/plugins",
   "license": "MIT",
   "keywords": [
     "outlook-email",
@@ -21,15 +20,21 @@
     "mail",
     "inbox"
   ],
-  "apps": "./.app.json",
+  "mcpServers": "./.mcp.json",
+  "skills": "./skills/",
+  "extensions": {
+    "com.openai": {
+      "onboardingSkill": "./skills/outlook-setup/SKILL.md"
+    }
+  },
   "interface": {
-    "displayName": "Outlook Email",
-    "shortDescription": "Triage Outlook inboxes",
-    "longDescription": "Use Outlook Email to triage inboxes, summarize threads, extract actions, and draft replies or forwards through the connected Microsoft Outlook app.",
-    "developerName": "OpenAI",
+    "displayName": "Outlook Email (Local MCP)",
+    "shortDescription": "Read Outlook mail and prepare drafts",
+    "longDescription": "Community integration using Softeria's open-source Microsoft 365 MCP server locally. Connects directly to Microsoft Graph with your own Microsoft Entra application. Configure any personal Outlook, Hotmail, or Live mailbox locally. Requires Node.js 22+ and Microsoft OAuth setup.",
+    "developerName": "georgebelt · community integration",
     "category": "Communication",
     "capabilities": [
-      "Interactive",
+      "Read",
       "Write"
     ],
     "websiteURL": "https://www.microsoft.com/en-us/microsoft-365/outlook/email-and-calendar-software-microsoft-outlook",
