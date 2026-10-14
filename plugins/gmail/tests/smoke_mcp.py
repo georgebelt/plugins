@@ -1,5 +1,6 @@
 """Exercise the real pinned MCP server using fake OAuth data and no Google login.
 
+Browser calls are intercepted so fake consent URLs never open on the desktop.
 Run with: uvx --from workspace-mcp==2.1.0 python plugins/gmail/tests/smoke_mcp.py
 """
 
@@ -8,6 +9,7 @@ import json
 import os
 from pathlib import Path
 import re
+import shlex
 import socket
 import subprocess
 import tempfile
@@ -119,10 +121,21 @@ async def main():
     with tempfile.TemporaryDirectory(prefix="gmail-mcp-smoke-") as temporary:
         data_dir = Path(temporary)
         port = free_port()
+        # The upstream stdio auth flow calls webbrowser.open(). A successful
+        # recording stub prevents desktop-browser fallback without logging URLs.
+        browser_stub = data_dir / "record-browser-open"
+        browser_log = data_dir / "browser-attempts"
+        browser_stub.write_text(
+            '#!/bin/sh\nprintf "%s\\n" blocked >> "$GMAIL_TEST_BROWSER_LOG"\n'
+            "exit 0\n"
+        )
+        browser_stub.chmod(0o700)
         env = dict(
             os.environ,
             GMAIL_LOCAL_MCP_DATA_DIR=str(data_dir),
             GMAIL_LOCAL_MCP_PORT=str(port),
+            BROWSER=shlex.join([str(browser_stub), "%s"]),
+            GMAIL_TEST_BROWSER_LOG=str(browser_log),
             # Deliberately conflicting upstream settings must not redirect auth.
             PORT="1",
             USER_GOOGLE_EMAIL="wrong@example.test",
@@ -132,6 +145,10 @@ async def main():
             WORKSPACE_MCP_HTTP_PORT="1",
         )
         await check_protocol(data_dir, env, port)
+        assert browser_log.read_text().splitlines() == ["blocked", "blocked"], (
+            "Both fake OAuth flows must use the browser interceptor."
+        )
+        print("PASS: both fake OAuth browser launches were intercepted.")
         check_occupied_port(env)
     print("No Google login, mailbox read, draft creation, or label change was performed.")
 

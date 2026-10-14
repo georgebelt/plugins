@@ -178,7 +178,8 @@ python3 -m unittest discover -s plugins/gmail/tests -p 'test_*.py'
 
 The protocol smoke test starts the pinned upstream server, checks the tool list,
 rejects a send call, and inspects a consent URL generated from fake credentials.
-It does not log in to Google or read mail:
+Browser calls are intercepted so those fake consent URLs do not open on the
+desktop. It does not log in to Google or read mail:
 
 ```bash
 uvx --from workspace-mcp==2.1.0 python plugins/gmail/tests/smoke_mcp.py
